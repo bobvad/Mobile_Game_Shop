@@ -1,3 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mobile_GameStoreShop</string>
+    <string name="app_name">Моё Приложение</string>
+    <string name="title_login">Вход в аккаунт</string>
+    <string name="subtitle_login">Введите данные для входа</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="button_login">Войти</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="register">Зарегистрироваться</string>
+
+    <!-- Сообщения валидации -->
+    <string name="error_empty_email">Введите email</string>
+    <string name="error_invalid_email">Некорректный email</string>
+    <string name="error_empty_password">Введите пароль</string>
+    <string name="error_short_password">Минимум 6 символов</string>
+    <string name="error_auth_failed">Неверный логин или пароль</string>
+    <string name="success_auth">Успешный вход!</string>
 </resources>
