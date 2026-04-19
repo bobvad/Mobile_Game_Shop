@@ -1,20 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Моё Приложение</string>
+    <string name="app_name">GameStore</string>
+
+    <string name="nav_home">Главная</string>
+    <string name="nav_catalog">Каталог</string>
+    <string name="nav_cart">Корзина</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_wishlist">Избранное</string>
+
+    <string name="search_hint">Найти игру…</string>
+    <string name="search_results">Результаты поиска</string>
+    <string name="search_empty">Ничего не найдено</string>
+
+    <string name="cart">Корзина</string>
+    <string name="cart_empty">Корзина пуста</string>
+    <string name="cart_total">Итого:</string>
+    <string name="cart_checkout">Оформить заказ</string>
+
+    <string name="featured_game">Рекомендуемая игра</string>
+    <string name="tag_featured">Хит</string>
+    <string name="tag_new">Новинка</string>
+    <string name="tag_sale">Скидка</string>
+
+    <string name="btn_buy">Купить</string>
+    <string name="btn_load_more">Показать ещё</string>
+    <string name="btn_view_all">Все игры</string>
+    <string name="btn_add_to_cart">В корзину</string>
+
+    <string name="section_categories">Категории</string>
+    <string name="section_popular">Популярные</string>
+    <string name="section_new">Новинки</string>
+    <string name="section_deals">Акции</string>
+
+    <string name="cat_action">Экшен</string>
+    <string name="cat_rpg">RPG</string>
+    <string name="cat_strategy">Стратегии</string>
+    <string name="cat_sport">Спорт</string>
+    <string name="cat_racing">Гонки</string>
+    <string name="cat_indie">Инди</string>
+    <string name="cat_adventure">Приключения</string>
+    <string name="cat_shooter">Шутеры</string>
+    <string name="cat_simulation">Симуляторы</string>
+
+    <string name="game_rating">Рейтинг</string>
+    <string name="game_price">Цена</string>
+    <string name="game_free">Бесплатно</string>
+    <string name="game_owned">Уже в библиотеке</string>
+
     <string name="title_login">Вход в аккаунт</string>
     <string name="subtitle_login">Введите данные для входа</string>
+    <string name="title_register">Регистрация</string>
+    <string name="subtitle_register">Создайте аккаунт</string>
+
     <string name="hint_email">Email</string>
     <string name="hint_password">Пароль</string>
+    <string name="hint_confirm_password">Повторите пароль</string>
+    <string name="hint_username">Имя пользователя</string>
+
     <string name="forgot_password">Забыли пароль?</string>
     <string name="button_login">Войти</string>
+    <string name="button_register">Зарегистрироваться</string>
     <string name="no_account">Нет аккаунта?</string>
+    <string name="have_account">Уже есть аккаунт?</string>
     <string name="register">Зарегистрироваться</string>
+    <string name="logout">Выйти</string>
 
-    <!-- Сообщения валидации -->
     <string name="error_empty_email">Введите email</string>
     <string name="error_invalid_email">Некорректный email</string>
     <string name="error_empty_password">Введите пароль</string>
     <string name="error_short_password">Минимум 6 символов</string>
+    <string name="error_passwords_mismatch">Пароли не совпадают</string>
     <string name="error_auth_failed">Неверный логин или пароль</string>
+    <string name="error_network">Ошибка сети</string>
+    <string name="error_unknown">Произошла ошибка</string>
+
     <string name="success_auth">Успешный вход!</string>
+    <string name="success_register">Регистрация успешна!</string>
+    <string name="success_added">Добавлено в корзину</string>
+
+    <string name="profile_title">Мой профиль</string>
+    <string name="profile_library">Библиотека</string>
+    <string name="profile_orders">Заказы</string>
+    <string name="profile_settings">Настройки</string>
 </resources>

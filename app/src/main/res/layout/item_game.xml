@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gameCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- 🔷 Обложка игры -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/gameCover"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/featured_game"
+            app:shapeAppearanceOverlay="@style/RoundedImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@drawable/ic_game_placeholder" />
+
+        <!-- 🏷️ Бейдж: Хит / Новинка / Скидка -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/gameTag"
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:includeFontPadding="false"
+            android:text="@string/tag_featured"
+            android:textSize="11sp"
+            app:chipBackgroundColor="@color/tag_featured"
+            app:chipCornerRadius="12dp"
+            app:chipMinHeight="24dp"
+            app:chipMinWidth="56dp"
+            app:layout_constraintStart_toStartOf="@id/gameCover"
+            app:layout_constraintTop_toTopOf="@id/gameCover" />
+
+        <!-- ❤️ Кнопка "В избранное" -->
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_favorite_border"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_wishlist"
+            app:tint="@color/white"
+            app:layout_constraintTop_toTopOf="@id/gameCover"
+            app:layout_constraintEnd_toEndOf="@id/gameCover" />
+
+        <!-- 📝 Название игры -->
+        <TextView
+            android:id="@+id/gameTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/gameCover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Cyber Adventure 2077" />
+
+        <!-- 🎭 Жанр -->
+        <TextView
+            android:id="@+id/gameGenre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="@color/text_secondary"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="RPG • Открытый мир" />
+
+        <!-- ⭐ Рейтинг -->
+        <LinearLayout
+            android:id="@+id/ratingContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/gameGenre"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_star_filled"
+                android:contentDescription="@string/game_rating"
+                app:tint="@color/warning" />
+
+            <TextView
+                android:id="@+id/gameRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/text_secondary"
+                android:textStyle="bold"
+                tools:text="4.8" />
+        </LinearLayout>
+
+        <!-- 💰 Цена + Кнопка -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ratingContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/gamePrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                tools:text="$19.99" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddToCart"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_cart"
+                app:iconSize="20dp"
+                app:iconTint="@color/on_primary"
+                app:cornerRadius="20dp"
+                style="@style/Widget.MaterialComponents.Button" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/ownedOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/overlay"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/game_owned"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="@color/text_on_primary"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
