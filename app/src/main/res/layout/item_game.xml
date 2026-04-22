@@ -21,52 +21,46 @@
         android:layout_height="wrap_content"
         android:padding="12dp">
 
-        <!-- 🔷 Обложка игры -->
+        <!-- COVER -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/gameCover"
             android:layout_width="0dp"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/featured_game"
-            app:shapeAppearanceOverlay="@style/RoundedImage"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:src="@drawable/ic_game_placeholder" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- 🏷️ Бейдж: Хит / Новинка / Скидка -->
+        <!-- CHIP TAG -->
         <com.google.android.material.chip.Chip
             android:id="@+id/gameTag"
             style="@style/Widget.MaterialComponents.Chip.Action"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:includeFontPadding="false"
             android:text="@string/tag_featured"
             android:textSize="11sp"
             app:chipBackgroundColor="@color/tag_featured"
             app:chipCornerRadius="12dp"
             app:chipMinHeight="24dp"
-            app:chipMinWidth="56dp"
             app:layout_constraintStart_toStartOf="@id/gameCover"
             app:layout_constraintTop_toTopOf="@id/gameCover" />
 
-        <!-- ❤️ Кнопка "В избранное" -->
+        <!-- FAVORITE -->
         <ImageButton
             android:id="@+id/btnFavorite"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_favorite_border"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/nav_wishlist"
-            app:tint="@color/white"
             app:layout_constraintTop_toTopOf="@id/gameCover"
             app:layout_constraintEnd_toEndOf="@id/gameCover" />
 
-        <!-- 📝 Название игры -->
+        <!-- TITLE -->
         <TextView
             android:id="@+id/gameTitle"
             android:layout_width="0dp"
@@ -82,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Cyber Adventure 2077" />
 
-        <!-- 🎭 Жанр -->
+        <!-- GENRE -->
         <TextView
             android:id="@+id/gameGenre"
             android:layout_width="0dp"
@@ -97,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="RPG • Открытый мир" />
 
-        <!-- ⭐ Рейтинг -->
+        <!-- RATING -->
         <LinearLayout
             android:id="@+id/ratingContainer"
             android:layout_width="wrap_content"
@@ -111,7 +105,6 @@
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@drawable/ic_star_filled"
                 android:contentDescription="@string/game_rating"
                 app:tint="@color/warning" />
 
@@ -126,8 +119,9 @@
                 tools:text="4.8" />
         </LinearLayout>
 
-        <!-- 💰 Цена + Кнопка -->
+        <!-- PRICE + BUTTON -->
         <LinearLayout
+            android:id="@+id/bottomContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -156,13 +150,12 @@
                 android:insetTop="0dp"
                 android:insetRight="0dp"
                 android:insetBottom="0dp"
-                app:icon="@drawable/ic_cart"
                 app:iconSize="20dp"
-                app:iconTint="@color/on_primary"
                 app:cornerRadius="20dp"
                 style="@style/Widget.MaterialComponents.Button" />
         </LinearLayout>
 
+        <!-- OWNED OVERLAY -->
         <FrameLayout
             android:id="@+id/ownedOverlay"
             android:layout_width="0dp"
@@ -185,4 +178,5 @@
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>

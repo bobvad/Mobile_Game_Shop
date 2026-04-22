@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
-    tools:context=".ui.profile.ProfileFragment">
+    android:background="@color/background_light">
 
     <!-- ========== ВЕРХНЯЯ ПАНЕЛЬ ========== -->
     <com.google.android.material.appbar.MaterialToolbar
@@ -18,23 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:title="@string/profile_title"
-        app:titleTextColor="@color/text_primary"
-        app:navigationIcon="@drawable/ic_arrow_back">
+        app:titleTextColor="@color/text_primary">
 
-        <!-- Кнопка редактирования профиля -->
         <ImageButton
             android:id="@+id/btnEditProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="@string/btn_edit"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="12dp"
             android:layout_gravity="end"
             app:tint="@color/primary" />
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <!-- ========== СКРОЛЛИРУЕМЫЙ КОНТЕНТ ========== -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -49,7 +43,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 👤 БЛОК ПОЛЬЗОВАТЕЛЯ -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,17 +67,13 @@
                             android:id="@+id/userAvatar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_avatar_placeholder"
-                            app:shapeAppearanceOverlay="@style/CircleImageView" />
+                            android:scaleType="centerCrop" />
 
-                        <!-- Бейдж статуса онлайн -->
                         <View
                             android:id="@+id/onlineIndicator"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="end|bottom"
-                            android:background="@drawable/bg_online_indicator"
                             android:visibility="gone" />
                     </FrameLayout>
 
@@ -105,7 +94,7 @@
                         android:layout_marginTop="4dp"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="@color/text_secondary"
-                        tools:text="rehon@example.com" />
+                        tools:text="zabaclub@example.com" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -252,7 +241,6 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_library"
                             android:contentDescription="@string/profile_library"
                             app:tint="@color/primary" />
 
@@ -268,8 +256,6 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
                             app:tint="@color/text_hint" />
                     </LinearLayout>
 
@@ -294,7 +280,6 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_orders"
                             android:contentDescription="@string/profile_orders"
                             app:tint="@color/primary" />
 
@@ -310,8 +295,6 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
                             app:tint="@color/text_hint" />
                     </LinearLayout>
 
@@ -320,7 +303,6 @@
                         android:layout_height="1dp"
                         android:background="@color/divider" />
 
-                    <!-- Избранное -->
                     <LinearLayout
                         android:id="@+id/menuWishlist"
                         android:layout_width="match_parent"
@@ -336,7 +318,6 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_favorite"
                             android:contentDescription="@string/nav_wishlist"
                             app:tint="@color/primary" />
 
@@ -352,8 +333,6 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
                             app:tint="@color/text_hint" />
                     </LinearLayout>
 
@@ -378,7 +357,6 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_settings"
                             android:contentDescription="@string/profile_settings"
                             app:tint="@color/primary" />
 
@@ -394,8 +372,6 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
                             app:tint="@color/text_hint" />
                     </LinearLayout>
 
@@ -404,7 +380,6 @@
                         android:layout_height="1dp"
                         android:background="@color/divider" />
 
-                    <!-- Поддержка -->
                     <LinearLayout
                         android:id="@+id/menuSupport"
                         android:layout_width="match_parent"
@@ -420,8 +395,6 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_support"
-                            android:contentDescription="@string/menu_support"
                             app:tint="@color/primary" />
 
                         <TextView
@@ -436,14 +409,11 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
                             app:tint="@color/text_hint" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 📋 ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -539,8 +509,6 @@
                 app:strokeColor="@color/error"
                 app:strokeWidth="1dp"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-            <!-- Версия приложения -->
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

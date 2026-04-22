@@ -5,10 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
-    tools:context=".ui.main.MainActivity">
+    android:background="@color/background_light">
 
-    <!-- ========== ВЕРХНЯЯ ПАНЕЛЬ ========== -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -17,9 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white"
-        app:navigationIcon="@drawable/ic_menu">
+        app:title="@string/app_name">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -28,24 +24,19 @@
             android:layout_marginEnd="8dp"
             app:iconifiedByDefault="false"
             app:queryHint="@string/search_hint"
-            app:searchHintIcon="@drawable/ic_search"
-            android:background="@drawable/bg_search_field"
             app:layout_constraintEnd_toStartOf="@id/cartButton" />
 
         <ImageView
             android:id="@+id/cartButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_cart"
             android:contentDescription="@string/cart"
             android:padding="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="end|center_vertical"
-            app:tint="@color/white" />
+            android:layout_gravity="end|center_vertical" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -62,7 +53,6 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="16dp">
 
-            <!-- 🔥 Герой-баннер -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/featuredCard"
                 android:layout_width="match_parent"
@@ -86,8 +76,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/gradient_dark_to_transparent" />
+                        android:layout_height="match_parent"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,7 +89,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/tag_featured"
-                            android:textColor="@color/white"
                             app:chipBackgroundColor="@color/accent"
                             app:chipMinHeight="28dp"
                             style="@style/Widget.MaterialComponents.Chip.Action" />
@@ -111,7 +99,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:textAppearance="?attr/textAppearanceHeadline6"
-                            android:textColor="@color/white"
                             android:maxLines="2"
                             android:ellipsize="end" />
 
@@ -121,7 +108,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textAppearance="?attr/textAppearanceSubtitle1"
-                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                         <com.google.android.material.button.MaterialButton
@@ -137,7 +123,6 @@
                 </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 📁 Категории -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,7 +141,6 @@
                 android:paddingEnd="4dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <!-- 🎮 Популярные игры -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,7 +160,6 @@
                 android:paddingEnd="4dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <!-- ✨ Новинки -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -195,7 +178,6 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2" />
 
-            <!-- Кнопка загрузки -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLoadMore"
                 android:layout_width="match_parent"
@@ -211,12 +193,11 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        app:menu="@menu/bottom_nav_menu"
         app:elevation="8dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:menu="@menu/menu_bottom_navigation" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
