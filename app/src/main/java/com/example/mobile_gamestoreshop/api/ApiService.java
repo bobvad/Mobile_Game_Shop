@@ -1,9 +1,11 @@
 // ApiService.java
 package com.example.mobile_gamestoreshop.api;
 
+import com.example.mobile_gamestoreshop.models.Cart;
 import com.example.mobile_gamestoreshop.models.ChatResponse;
 import com.example.mobile_gamestoreshop.models.Game;
 import com.example.mobile_gamestoreshop.models.Purchase;
+import com.example.mobile_gamestoreshop.models.PurchaseResponse;
 import com.example.mobile_gamestoreshop.models.Review;
 import com.example.mobile_gamestoreshop.models.User;
 import com.example.mobile_gamestoreshop.models.UserStats;
@@ -54,9 +56,41 @@ public interface ApiService {
             @Field("UserId") Integer userId,
             @Field("SessionId") String sessionId
     );
+    @FormUrlEncoded
+    @POST("api/Purchases/BuyGame")
+    Call<PurchaseResponse> buyGame(
+            @Field("userId") int userId,
+            @Field("gameId") int gameId
+    );
+
+    @POST("api/Purchases/GenerateNewActivationKey/{purchaseId}")
+    Call<ResponseBody> generateNewActivationKey(@Path("purchaseId") int purchaseId);
     @GET("api/UserController/GetStats")
     Call<UserStats> getUserStats(@Query("id") int userId);
+    // Корзина
+    @FormUrlEncoded
+    @POST("api/Carts/AddToCart")
+    Call<Cart> addToCart(
+            @Field("userId") int userId,
+            @Field("gameId") int gameId,
+            @Field("quantity") int quantity
+    );
 
+    @GET("api/Carts/GetUserCart/{userId}")
+    Call<List<Cart>> getUserCart(@Path("userId") int userId);
+
+    @DELETE("api/Carts/RemoveFromCart/{cartId}")
+    Call<ResponseBody> removeFromCart(@Path("cartId") int cartId);
+
+    @FormUrlEncoded
+    @PUT("api/Carts/UpdateQuantity")
+    Call<Cart> updateQuantity(
+            @Field("cartId") int cartId,
+            @Field("quantity") int quantity
+    );
+
+    @DELETE("api/Carts/ClearCart/{userId}")
+    Call<ResponseBody> clearCart(@Path("userId") int userId);
     @FormUrlEncoded
     @DELETE("api/UserController/DeleteById")
     Call<ResponseBody> deleteUser(@Field("id") int userId);

@@ -26,10 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ChatAiActivity"
-            android:label="Чат с ИИ"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ChatAiActivity" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false"

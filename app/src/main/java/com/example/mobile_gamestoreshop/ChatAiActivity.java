@@ -86,7 +86,6 @@ public class ChatAiActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        // Приветственное сообщение от бота
         ChatMessage welcomeMsg = new ChatMessage("Привет! Я ваш игровой ассистент. Задавайте любые вопросы об играх, акциях или технической поддержке.", ChatMessage.Sender.AI);
         messageList.add(welcomeMsg);
         adapter.notifyItemInserted(0);
@@ -96,14 +95,12 @@ public class ChatAiActivity extends AppCompatActivity {
         String messageText = editTextMessage.getText().toString().trim();
         if (TextUtils.isEmpty(messageText)) return;
 
-        // Добавляем сообщение пользователя в список
         ChatMessage userMessage = new ChatMessage(messageText, ChatMessage.Sender.USER);
         messageList.add(userMessage);
         adapter.notifyItemInserted(messageList.size() - 1);
         recyclerView.scrollToPosition(messageList.size() - 1);
         editTextMessage.setText("");
 
-        // Отправляем запрос на сервер
         Call<ChatResponse> call = apiService.sendChatMessage(messageText, userId, sessionId);
         call.enqueue(new Callback<ChatResponse>() {
             @Override
@@ -129,14 +126,13 @@ public class ChatAiActivity extends AppCompatActivity {
 
     private void showError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-        // Добавляем сообщение об ошибке как ответ бота
+
         ChatMessage errorMessage = new ChatMessage("Извините, произошла ошибка. Попробуйте позже.", ChatMessage.Sender.AI);
         messageList.add(errorMessage);
         adapter.notifyItemInserted(messageList.size() - 1);
         recyclerView.scrollToPosition(messageList.size() - 1);
     }
 
-    // Адаптер для чата
     private static class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         private final List<ChatMessage> messages;
 
@@ -156,15 +152,24 @@ public class ChatAiActivity extends AppCompatActivity {
             ChatMessage msg = messages.get(position);
             holder.textMessage.setText(msg.getText());
 
-            // Настройка выравнивания и фона в зависимости от отправителя
             if (msg.getSender() == ChatMessage.Sender.USER) {
                 holder.containerMessage.setBackgroundResource(R.drawable.bg_message_user);
-                ((LinearLayout.LayoutParams) holder.containerMessage.getLayoutParams()).gravity = android.view.Gravity.END;
                 holder.textMessage.setTextColor(0xFFFFFFFF);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.gravity = android.view.Gravity.END;
+                holder.containerMessage.setLayoutParams(params);
             } else {
                 holder.containerMessage.setBackgroundResource(R.drawable.bg_message_ai);
-                ((LinearLayout.LayoutParams) holder.containerMessage.getLayoutParams()).gravity = android.view.Gravity.START;
                 holder.textMessage.setTextColor(0xFF000000);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.gravity = android.view.Gravity.START;
+                holder.containerMessage.setLayoutParams(params);
             }
         }
 

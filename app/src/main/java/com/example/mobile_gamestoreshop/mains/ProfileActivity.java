@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,10 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobile_gamestoreshop.ChatAiActivity;
 import com.example.mobile_gamestoreshop.MainActivity;
 import com.example.mobile_gamestoreshop.R;
+import com.example.mobile_gamestoreshop.api.ApiClient;
+import com.example.mobile_gamestoreshop.api.ApiService;
 import com.example.mobile_gamestoreshop.mains.HomeActivity;
+import com.example.mobile_gamestoreshop.models.Purchase;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -85,7 +95,27 @@ public class ProfileActivity extends AppCompatActivity {
             });
         }
     }
+    private void loadPurchases() {
+        SharedPreferences prefs = getSharedPreferences("GameShopPrefs", MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1);
+        if (userId == -1) return;
 
+        ApiService apiService = ApiClient.getApiService(this);
+        Call<List<Purchase>> call = apiService.getUserPurchases(userId);
+        call.enqueue(new Callback<List<Purchase>>() {
+            @Override
+            public void onResponse(Call<List<Purchase>> call, Response<List<Purchase>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("Profile", "Purchases count: " + response.body().size());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Purchase>> call, Throwable t) {
+                Log.e("Profile", "Failed to load purchases", t);
+            }
+        });
+    }
     private void loadUserData() {
         String userLogin = sharedPreferences.getString("userLogin", "Пользователь");
         String userEmailText = sharedPreferences.getString("userEmail", "email@example.com");

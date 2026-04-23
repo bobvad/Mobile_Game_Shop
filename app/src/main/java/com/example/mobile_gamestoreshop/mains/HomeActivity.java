@@ -13,22 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile_gamestoreshop.CartActivity;
 import com.example.mobile_gamestoreshop.ChatAiActivity;
 import com.example.mobile_gamestoreshop.GameDetailsActivity;
-import com.example.mobile_gamestoreshop.mains.ProfileActivity;
 import com.example.mobile_gamestoreshop.R;
 import com.example.mobile_gamestoreshop.Adapter.GamesAdapter;
 import com.example.mobile_gamestoreshop.api.ApiClient;
 import com.example.mobile_gamestoreshop.api.ApiService;
+import com.example.mobile_gamestoreshop.models.Cart;
 import com.example.mobile_gamestoreshop.models.Game;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    private int userId = -1;
 
     private ApiService apiService;
     private SharedPreferences sharedPreferences;
@@ -43,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("GameShopPrefs", Context.MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId", -1); // получаем ID пользователя
         apiService = ApiClient.getApiService(this);
 
         initViews();
@@ -97,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
                     return true;
-                } else if (id == R.id.nav_ai_chat) {  // ✅ Добавлено
+                } else if (id == R.id.nav_ai_chat) {
                     navigateToAIChat();
                     return true;
                 } else if (id == R.id.nav_cart) {
@@ -111,6 +115,7 @@ public class HomeActivity extends AppCompatActivity {
             });
         }
     }
+
     private void loadGames() {
         Call<List<Game>> call = apiService.getAllGames();
         call.enqueue(new Callback<List<Game>>() {
@@ -125,7 +130,6 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "Нет игр в базе данных", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Попробуем прочитать тело ошибки
                     String errorBody = "";
                     try {
                         if (response.errorBody() != null) errorBody = response.errorBody().string();
@@ -152,9 +156,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onAddToCartClick(Game game) {
-                if (game != null) {
-                    Toast.makeText(HomeActivity.this, "Добавлено: " + game.getTitle(), Toast.LENGTH_SHORT).show();
-                }
+                addToCart(game);
             }
 
             @Override
@@ -162,6 +164,30 @@ public class HomeActivity extends AppCompatActivity {
                 if (game != null) {
                     Toast.makeText(HomeActivity.this, "В избранное: " + game.getTitle(), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void addToCart(Game game) {
+        if (game == null) return;
+        if (userId == -1) {
+            Toast.makeText(this, "Авторизуйтесь для добавления в корзину", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Call<Cart> call = apiService.addToCart(userId, game.getId(), 1);
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(HomeActivity.this, "Добавлено в корзину: " + game.getTitle(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeActivity.this, "Ошибка добавления", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+                Toast.makeText(HomeActivity.this, "Ошибка сети: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
