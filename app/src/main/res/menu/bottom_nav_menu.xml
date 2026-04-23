@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/nav_home"
-        android:icon="@android:drawable/ic_menu_search"
         android:title="Главная" />
+
     <item
-        android:id="@+id/nav_library"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:title="Библиотека" />
+        android:id="@+id/nav_cart"
+        android:title="Корзина" />
+    <item
+        android:id="@+id/nav_ai_chat"
+        android:title="ИИ-Ассистент" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@android:drawable/ic_menu_myplaces"
         android:title="Профиль" />
+
 </menu>

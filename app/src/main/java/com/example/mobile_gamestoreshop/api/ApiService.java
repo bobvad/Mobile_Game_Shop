@@ -1,6 +1,7 @@
 // ApiService.java
 package com.example.mobile_gamestoreshop.api;
 
+import com.example.mobile_gamestoreshop.models.ChatResponse;
 import com.example.mobile_gamestoreshop.models.Game;
 import com.example.mobile_gamestoreshop.models.Purchase;
 import com.example.mobile_gamestoreshop.models.Review;
@@ -46,6 +47,13 @@ public interface ApiService {
             @Field("Password") String password
     );
 
+    @FormUrlEncoded
+    @POST("api/Messages/send")
+    Call<ChatResponse> sendChatMessage(
+            @Field("Message") String message,
+            @Field("UserId") Integer userId,
+            @Field("SessionId") String sessionId
+    );
     @GET("api/UserController/GetStats")
     Call<UserStats> getUserStats(@Query("id") int userId);
 
@@ -65,7 +73,6 @@ public interface ApiService {
     @GET("api/GameController/GetByGameId/{gameId}")
     Call<List<Review>> getGameReviews(@Path("gameId") int gameId);
 
-    // ========== 🔧 ADMIN ENDPOINTS (опционально) ==========
 
     @FormUrlEncoded
     @POST("api/GameController/AddGame")

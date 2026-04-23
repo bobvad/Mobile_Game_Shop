@@ -96,6 +96,7 @@ public class ApiClient {
 
             Gson gson = new GsonBuilder()
                     .setLenient()
+                    .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                     .create();
 
             retrofit = new Retrofit.Builder()
